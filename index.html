@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lista de Tarefas</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        li {
+            color: green;
+            cursor: pointer;
+            padding-bottom: 12px;
+        }
+        .tarefaFeita {
+            color: red;
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body>
+    <h2>Tarefa:</h2>
+    <form id="form_tarefa">
+        <input type="text" id="input_tarefa" placeholder="Digite a sua tarefa" />
+        <br/><br/>
+        <input type="button" id="btn_adicionar" value="Adicionar"
+            onclick="adicionarTarefa()" />
+    </form>
+    <h2>Lista de tarefas:</h2>
+    <ul id="lista_tarefas"></ul>
+</body>
+
+<script>
+    function adicionarTarefa() {
+        var inputTarefa = document.getElementById("input_tarefa");
+        var tarefaDigitada = inputTarefa.value;
+        
+        var listaTarefas = document.getElementById("lista_tarefas");
+        var itemLista = document.createElement('li');
+        var tarefa = document.createTextNode(tarefaDigitada);
+        itemLista.appendChild( tarefa );
+        itemLista.setAttribute( "onclick", "marcarTarefaComoFeita(this)")
+        listaTarefas.appendChild( itemLista );
+
+        inputTarefa.value = "";
+    }
+
+    function marcarTarefaComoFeita(tarefa) {
+        tarefa.classList.add("tarefaFeita");
+    }
+</script>
+
+</html>
